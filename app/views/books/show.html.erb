@@ -41,12 +41,41 @@
 						<% end %>
 					</td>
 						<!--いいね機能終わり -->
+						<!--コメント件数 -->
+						<td>
+							コメント数<%= @book.book_comments.count %>
+						</td>
+						<!--コメント件数終わり -->
 					<% if @book.user == current_user %>
 					<td><%= link_to "Edit", edit_book_path(@book), class: "btn-sm btn-success edit_book_#{@book.id}" %></td>
 					<td><%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
 					<% end %>
 				</tr>
 			</table>
+			<!--コメント一覧 -->
+			<table class="table">
+				<% @book.book_comments.each do |book_comment| %>
+				<tr>
+					<td>
+						<%= attachment_image_tag(book_comment.user, :profile_image, :fill, 30, 30, fallback: "no-image-mini.jpg") %>
+					</td>
+					<td>
+						<%= book_comment.comment %>
+					</td>
+					<td>
+
+					</td>
+				</tr>
+				<% end %>
+			</table>
+			<!--コメント一覧終わり -->
+			<!--コメント投稿 -->
+			<%= form_for [@book, @book_comment] do |f| %>
+			<%= f.text_area :comment %>
+			<%= f.submit "送信する" %>
+			<% end %>
+			<!--コメント投稿終わり -->
+
 
 	</div>
 </div>
