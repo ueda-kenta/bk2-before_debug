@@ -15,7 +15,10 @@
  */
 @import "bootstrap-sprockets";  /*ここを追加*/
 @import "bootstrap";            /*ここを追加*/
-
+@import " font-awesome ";
+*{
+font-family: "Font Awesome 5 Free";
+}
 header {
 	color:white;
 }
@@ -23,6 +26,9 @@ header {
 header .navbar-left span {
 	font-size: 20px;
 	padding-top: 10px;
+}
+ul{
+	list-style: none;
 }
 
 body {
