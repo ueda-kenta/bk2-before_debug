@@ -1,6 +1,9 @@
 <div class = "container">
 	<div class = "low">
 		<h1>follow一覧</h1>
+		<% if @user.followings.count == 0 %>
+		<p>フォローしていません</p>
+		<% else %>
 		<table class="table">
 			<thead>
 				<tr>
@@ -10,10 +13,8 @@
 		        </tr>
 	        </thead>
 	        <tbody>
+	        	<!-- フォロー一覧 -->
 	        	<% @user.followings.each do |user| %>
-	        	<% if @user.followings.count == 0 %>
-	        	<p>フォローしていません</p>
-	        	<% else %>
 	        	<tr>
 	        		<td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %></td>
 		    	    <td><%= user.name %></td>
@@ -22,8 +23,8 @@
 			        <td><%= link_to "Show", user_path(user), class: "user_#{user.id}" %></td>
 		        </tr>
 		        <% end %>
-		        <% end %>
 		    </tbody>
 	    </table>
+	    <% end %>
     </div>
 </div>
