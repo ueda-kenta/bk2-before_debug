@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users,only: [:show,:index,:edit,:update]
   get "user/show_follow/:id" => "users#show_follow", as: "user_show_follow"
   get "user/show_follower/:id" => "users#show_follower", as: "user_show_follower"
+  get "search" => "searches#search"
   resources :relationships, only: [:create, :destroy]
   resources :books do
   	resource :favorites, only: [:create, :destroy]
