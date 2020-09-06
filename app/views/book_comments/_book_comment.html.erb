@@ -1,0 +1,19 @@
+<div id = "comments_area">
+	<table class="table">
+		<% book.book_comments.each do |book_comment| %>
+		<tr>
+			<td>
+				<%= attachment_image_tag(book_comment.user, :profile_image, :fill, 30, 30, fallback: "no-image-mini.jpg") %>
+		    </td>
+		    <td>
+			    <%= book_comment.comment %>
+		    </td>
+		    <td>
+			    <% if book_comment.user == current_user %>
+			    <%= link_to "削除", book_book_comments_path(book_id: book_comment.book, id: book_comment), remote: true, method: :delete %>
+			    <% end %>
+		    </td>
+	    </tr>
+	    <% end %>
+	</table>
+</div>
