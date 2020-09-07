@@ -72,3 +72,4 @@ gem 'jquery-rails'
 
 gem "font-awesome-rails"
 gem 'jp_prefecture'
+gem "geocoder"
