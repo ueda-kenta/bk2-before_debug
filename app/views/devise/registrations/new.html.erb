@@ -14,6 +14,21 @@
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, class: "email" %>
   </div>
+　<!--都道府県追加 　 -->
+  <div class="field">
+    <%= f.label :postal_code %><br />
+    <%= f.text_field :postal_code, autofocus: true, placeholder: 'postal_code', class: "postal_code",  id: "address_zipcode" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :prefecture_code %><br>
+    <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name, class: "address" %><br>
+    <%= f.label :city %><br>
+    <%= f.text_field :city, autofocus: true, placeholder: 'city', class: "address", id:"address_city" %><br>
+    <%= f.label :street %><br>
+    <%= f.text_field :street, autofocus: true, placeholder: 'Street', class: "address", id: "address_street" %>
+  </div>
+　<!-- 都道府県追加終わり -->
 
   <div class="field">
     <%= f.label :password %>
