@@ -41,30 +41,37 @@
 <!-- map表示 -->
 <div class = "row">
 	<div class = "col-xs-12">
+		<% if @user == current_user %>
 		<h2>Your MAP</h2>
 		<div id='map'></div>
-		<style>
-			#map {
-				height: 400px;
-				width: 100%;
-			}
-		</style>
 
-		<script>
-			let map
-			function initMap(){
-				geocoder = new google.maps.Geocoder()
-				map = new google.maps.Map(document.getElementById('map'), {
-					center: {lat: 40.7828, lng:-73.9653},zoom: 12,
-				});
+<style>
+#map {
+  height: 400px;
+  width: 100%;
+}
+</style>
 
-				marker = new google.maps.Marker({
-					position:  {lat: 40.7828, lng:-73.9653},
-					map: map
-				});
-			}
-		</script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_FoMr8lk7jSC6USoa4qgnwCXA6Fr8ecA&callback=initMap" async defer></script>
+<script>
+let map
+
+function initMap(){
+	var test ={lat: <%= @user.latitude %>, lng: <%= @user.longitude %>};
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+  	zoom: 15,
+    center: test,
+  });
+
+  marker = new google.maps.Marker({
+    position:test,
+    map: map
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+<% end %>
 	    </div>
 	</div>
 </div>
