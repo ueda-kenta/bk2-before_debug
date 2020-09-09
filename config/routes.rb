@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => {
+    :registrations => 'users/registrations'
+   }
   root 'home#top'
   resources :users,only: [:show,:index,:edit,:update]
   get "user/show_follow/:id" => "users#show_follow", as: "user_show_follow"
