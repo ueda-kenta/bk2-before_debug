@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
+  has_many :user_rooms, dependent: :destroy
+  has_many :chats, dependent: :destroy
 
   # フォロー関連(relationships)紐付け
   has_many :relationships
@@ -44,6 +46,7 @@ def self.search(search,word)
       end
 end
 # 検索関連終わり
+
 
   attachment :profile_image, destroy: false
 
