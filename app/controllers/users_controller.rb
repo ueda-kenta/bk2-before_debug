@@ -4,8 +4,27 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @currentUserEntry=UserRoom.where(user_id: current_user.id)
+    @userEntry=UserRoom.where(user_id: @user.id)
     @books = @user.books
     @book = Book.new
+    # DM関連
+    unless @user.id == current_user.id
+      @currentUserEntry.each do |cuser|
+        @userEntry.each do |user|
+          if cuser.room_id == user.room_id then
+            @isRoom = true
+            @roomId = cuser.room_id
+          end
+        end
+      end
+      if @isRoom
+      else
+        @room = Room.new
+        @entry = UserRoom.new
+      end
+    end
+    # DM関連終わり
   end
 
   def index

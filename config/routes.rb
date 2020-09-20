@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get "user/show_follower/:id" => "users#show_follower", as: "user_show_follower"
   get "search" => "searches#search"
   resources :relationships, only: [:create, :destroy]
+  resources :messages, only: [:create]
+  resources :rooms, only: [:create,:show]
+  
   resources :books do
   	resource :favorites, only: [:create, :destroy]
   	resource :book_comments, only: [:create, :destroy]
